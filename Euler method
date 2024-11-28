@@ -1,0 +1,25 @@
+#Euler Method
+#8955
+
+a = 1   # Start point of x
+b = 1.3 # End point of x
+y0 = 1  # Initial value of y
+h = 0.1 # Step size
+n = int((b - a) / h) # Number of steps
+
+
+
+print(n)
+def f(x,y):
+    k=1/(x**2)-(y/x)
+    return k
+
+def Euler_method(f,a,b,n,y0):
+    
+    for i in range(n):
+       yn=y0+h*f(a,y0)
+       y0=yn
+       a+=h
+       print(y0)
+    print('The value of root is',yn)
+Euler_method(f,a,b,n,y0)
