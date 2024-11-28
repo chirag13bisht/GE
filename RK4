@@ -1,0 +1,59 @@
+#Rk Method
+#8955
+
+def f(x,y):
+    k=(y**2-x**2)/(y**2+x**2)
+    return k
+
+x0=0
+y0=1
+b=0.2
+h=0.2
+n=int((b-x0)/h)
+def RK4(x0,y0,b,f,n):
+    for i in range(n):
+        k1=h*f(x0,y0)
+        k2=h*f(x0+h/2,y0+k1/2)
+        k3=h*f(x0+h/2,y0+k2/2)
+        k4=h*f(x0+h,y0+k3)
+        yn=y0+(1/6)*(k1+2*k2+2*k3+k4)
+        y0=yn
+        x0+=h
+    print('Root by RK4 is',yn)
+RK4(x0,y0,b,f,n)
+#RK3
+x0=0
+y0=1
+b=0.2
+h=0.2
+n=int((b-x0)/h)
+def RK3(x0,y0,b,f,n):
+    for i in range(n):
+        k1=h*f(x0,y0)
+        k2=h*f(x0+2*h/3,y0+2*k1/3)
+        k3=h*f(x0+2*h/3,y0+2*k2/3)
+        
+        yn=y0+(1/8)*(2*k1+3*k2+3*k3)
+        y0=yn
+        x0+=h
+    print('Root by RK3 is',yn)
+
+RK3(x0,y0,b,f,n)
+
+#RK2
+x0=0
+y0=1
+b=0.2
+h=0.2
+n=int((b-x0)/h)
+def RK2(x0,y0,b,f,n):
+    for i in range(n):
+        k1=h*f(x0,y0)
+        k2=h*f(x0+h,y0+k1)
+        
+        yn=y0+(1/2)*(k1+k2)
+        y0=yn
+        x0+=h
+    print('Root by RK2 is',yn)
+
+RK2(x0,y0,b,f,n)
