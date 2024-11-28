@@ -1,0 +1,28 @@
+def bisection(f, a, b, tol=1e-5, max_iter=100):
+
+    if f(a) * f(b) > 0:
+        raise ValueError("f(a) and f(b) must have opposite signs")
+
+    iter_count = 0
+
+    for _ in range(max_iter):
+        iter_count += 1
+        c = (a + b) / 2
+        if f(c) == 0 or (b - a) / 2 < tol:
+            return c, iter_count
+
+        if f(a) * f(c) < 0:
+            b = c
+        else:
+            a = c
+
+    raise ValueError("Failed to converge after {} iterations".format(max_iter))
+
+# Example usage:
+def f(x):
+    return x**2 - 2
+
+root, iterations = bisection(f, 0, 2)
+print("Approximate root:", root)
+print("Number of iterations:", iterations)
+
