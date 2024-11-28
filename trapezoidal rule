@@ -1,0 +1,23 @@
+def trapezoidal_rule(f, a, b, n):
+    
+    h = (b - a) / n
+    total = 0.5 * (f(a) + f(b))
+
+    for i in range(1, n):
+        x_i = a + i * h
+        total += f(x_i)
+    
+    return total * h
+
+# Example function to integrate
+def function(x):
+    return x**3  # Example: f(x) = x^3
+
+# Parameters for the trapezoidal rule
+a = 0      # Lower limit
+b = 1      # Upper limit
+n = 4      # Number of intervals
+
+# Compute the result
+result = trapezoidal_rule(function, a, b, n)
+print(f"Trapezoidal Rule Result: {result:.4f}")
