@@ -1,0 +1,40 @@
+import numpy as np
+import matplotlib.pyplot as graph
+
+# Set fixed lower and upper limits
+a = 0
+b = 1
+h = (b - a) / 2
+
+num = a
+sum_s_odd = 0
+sum_s_even = 0
+sum_s3 = 0
+y = []
+
+# Function definition
+def f(x):
+    return 1 / (1 + (x ** 2))
+
+# Loop to generate y values
+while num <= b:
+    val = f(num)
+    y.append(val)
+    num += h
+
+# Calculating sum values for Simpsons 1/3 and 3/8
+for i in range(1, len(y) - 1):
+    if i % 2 != 0:
+        sum_s_odd += y[i]
+    if i % 2 == 0:
+        sum_s_even += y[i]
+    if i % 3 == 0:
+        sum_s3 += y[i]
+
+# 1/3 Simpsons Rule
+output_s = (h / 3) * ((y[0] - y[-1]) + (4 * sum_s_odd) + (2 * sum_s_even))
+print(f"The final sum by Simpsons 1/3 rule is {output_s}")
+
+# 3/8 Simpsons Rule
+output_s3 = (h * (3 / 8)) * ((y[0] + y[-1]) + (3 * sum_s_odd) + (2 * sum_s3))
+print(f"The final sum by Simpsons 3/8 rule is {output_s3}")
